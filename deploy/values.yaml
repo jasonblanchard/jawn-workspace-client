@@ -1,0 +1,4 @@
+relicats: 1
+name: workspace-client
+image: jasonblanchard/jawn-workspace-client
+port: 8080

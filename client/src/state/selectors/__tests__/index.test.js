@@ -66,20 +66,20 @@ describe('getEntries', () => {
       },
     };
 
-    expect(selectors.getEntries(state)).toEqual([
-      {
-        id: '2',
-        text: 'second',
-        timeCreated: '2018-01-10T21:39:20-05:00',
-        timeUpdated: null,
-      },
+    expect(selectors.getEntries(state)).toEqual(expect.arrayContaining([
       {
         id: '1',
         text: 'first',
         timeCreated: '2018-01-10T21:39:20-05:00',
         timeUpdated: null,
       },
-    ]);
+      {
+        id: '2',
+        text: 'second',
+        timeCreated: '2018-01-10T21:39:20-05:00',
+        timeUpdated: null,
+      },
+    ]));
   });
 });
 
@@ -107,16 +107,16 @@ describe('getEntryPreviews', () => {
       },
     };
 
-    expect(selectors.getEntryPreviews(state)).toEqual([
-      {
-        id: '2',
-        text: 'second',
-      },
+    expect(selectors.getEntryPreviews(state)).toEqual(expect.arrayContaining([
       {
         id: '1',
         text: 'first',
       },
-    ]);
+      {
+        id: '2',
+        text: 'second',
+      },
+    ]));
   });
 });
 
