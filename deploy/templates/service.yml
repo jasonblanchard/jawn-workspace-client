@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.name }}
-        image: {{ .Values.image }}-{{ .Values.name }}:1
+        image: {{ .Values.image }}:{{ .Values.version }}
         env:
           - name: 'PORT'
             value: '{{ .Values.port }}'
