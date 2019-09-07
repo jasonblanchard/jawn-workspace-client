@@ -45,6 +45,7 @@
     "@types/morgan": "^1.7.35",
     "@types/serve-favicon": "^2.2.30",
     "concurrently": "^4.1.0",
+    "cypress": "^3.4.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^2.1.1",
@@ -65,6 +66,7 @@
     "watch-all": "rm -f client/build/static/assets.json && concurrently --names \"client,server,node\" --prefix-colors \"green,cyan,yellow\" \"cd client && npm run watch\" \"npm run build -- --watch\" \"wait-on client/build/static/assets.json && NODE_PATH=build nodemon --watch build build/app/index.js\"",
     "start": "node build/app/index.js",
     "test": "NODE_PATH=./src jest --env node --config jest.config.js",
+    "cypress:open": "cypress open",
     "watch-all-integration": "rm -f client/build/static/assets.json && concurrently --names \"client,server,node,cypress\" --prefix-colors \"green,cyan,yellow,orange\" \"cd client && npm run watch\" \"npm run build -- --watch\" \"wait-on client/build/static/assets.json && PORT=8082 DB_NAME=jawn_test NODE_PATH=build nodemon --watch build build/app/index.js\" \"wait-on client/build/static/assets.json && cd tests && PORT=8082 MONGO_HOST=localhost DB_NAME=jawn_test npm run cypress:open\""
   }
 }
