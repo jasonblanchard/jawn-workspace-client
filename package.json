@@ -20,6 +20,7 @@
     "express-jwt": "^5.3.1",
     "graphql": "^0.13.2",
     "graphql-tools": "^3.1.1",
+    "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
     "lodash.isempty": "^4.4.0",
     "loglevel": "^1.6.1",
@@ -53,7 +54,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.0",
-    "jest": "^23.6.0",
     "nodemon": "^1.18.9",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.2"
@@ -65,8 +65,7 @@
     "lint": "eslint src/",
     "watch-all": "rm -f client/build/static/assets.json && concurrently --names \"client,server,node\" --prefix-colors \"green,cyan,yellow\" \"cd client && npm run watch\" \"npm run build -- --watch\" \"wait-on client/build/static/assets.json && NODE_PATH=build nodemon --watch build build/app/index.js\"",
     "start": "node build/app/index.js",
-    "test": "NODE_PATH=./src jest --env node --config jest.config.js",
     "cypress:open": "cypress open",
-    "watch-all-integration": "rm -f client/build/static/assets.json && concurrently --names \"client,server,node,cypress\" --prefix-colors \"green,cyan,yellow,orange\" \"cd client && npm run watch\" \"npm run build -- --watch\" \"wait-on client/build/static/assets.json && PORT=8082 DB_NAME=jawn_test NODE_PATH=build nodemon --watch build build/app/index.js\" \"wait-on client/build/static/assets.json && cd tests && PORT=8082 MONGO_HOST=localhost DB_NAME=jawn_test npm run cypress:open\""
+    "cypress:run": "cypress run"
   }
 }

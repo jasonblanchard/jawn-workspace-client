@@ -74,6 +74,9 @@ module.exports = () => {
       new CopyWebpackPlugin([
         { from: 'src/styles/fonts', to: 'fonts' },
       ]),
+      new CopyWebpackPlugin([
+        { from: 'src/public' },
+      ]),
       ifProduction(new CleanWebpackPlugin([relativePath('build/static')])),
       // new SassLintPlugin({
       //   glob: 'src/**/*.s?(a|c)ss',

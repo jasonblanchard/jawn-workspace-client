@@ -11,8 +11,8 @@ import TokenUtils from 'app/utils/TokenUtils';
 import jwt from 'jsonwebtoken';
 
 const LOG_TAG = 'app';
-const BUILD_PATH = '../../../client/build';
-const ASSET_PATHS = JSON.parse(fs.readFileSync(path.join(__dirname, BUILD_PATH, '/static/assets.json'), 'utf8'));
+const BUILD_PATH = '../../../client/build/static';
+const ASSET_PATHS = JSON.parse(fs.readFileSync(path.join(__dirname, BUILD_PATH, '/assets.json'), 'utf8'));
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -30,7 +30,7 @@ export default function(registry: Registry) {
   app.use(favicon(path.join(__dirname, BUILD_PATH + '/favicon.ico')));
   app.use(bodyParser.json());
   app.use(cookieParser());
-  app.use('/static', express.static(path.join(__dirname, BUILD_PATH + '/static')));
+  app.use('/static', express.static(path.join(__dirname, BUILD_PATH)));
   app.use(morgan(NODE_ENV === 'development' ? 'dev' : 'combined'));
 
   app.get('/health', (_request, response) => {
@@ -64,13 +64,13 @@ export default function(registry: Registry) {
   app.use((_request, _response) => {
     throw Boom.notFound();
   });
-  
+
   app.use((error: Boom, _request: Request, response: Response, _next: any) => {
     console.log('HERE');
     if (error.name === 'UnauthorizedError') {
       error = Boom.unauthorized();
     }
-    
+
     error = error.isBoom ? error : Boom.boomify(error);
     error.reformat();
     logger.error({ error, stack: error.stack }, LOG_TAG);

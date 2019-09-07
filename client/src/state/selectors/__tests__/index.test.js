@@ -52,13 +52,13 @@ describe('getEntries', () => {
         entries: {
           1: {
             id: '1',
-            text: 'asdfasdf',
+            text: 'first',
             timeCreated: '2018-01-10T21:39:20-05:00',
             timeUpdated: null,
           },
           2: {
             id: '2',
-            text: 'asdfasdf',
+            text: 'second',
             timeCreated: '2018-01-10T21:39:20-05:00',
             timeUpdated: null,
           },
@@ -66,20 +66,20 @@ describe('getEntries', () => {
       },
     };
 
-    expect(selectors.getEntries(state)).toEqual([
+    expect(selectors.getEntries(state)).toEqual(expect.arrayContaining([
       {
         id: '1',
-        text: 'asdfasdf',
+        text: 'first',
         timeCreated: '2018-01-10T21:39:20-05:00',
         timeUpdated: null,
       },
       {
         id: '2',
-        text: 'asdfasdf',
+        text: 'second',
         timeCreated: '2018-01-10T21:39:20-05:00',
         timeUpdated: null,
       },
-    ]);
+    ]));
   });
 });
 
@@ -91,15 +91,15 @@ describe('getEntryPreviews', () => {
       },
       entities: {
         entries: {
-          1: {
-            id: '1',
-            text: 'first\nasdfsdf',
-            timeCreated: '2018-01-10T21:39:20-05:00',
-            timeUpdated: null,
-          },
           2: {
             id: '2',
             text: 'second\nsdf asdf asdf',
+            timeCreated: '2018-01-10T21:39:20-05:00',
+            timeUpdated: null,
+          },
+          1: {
+            id: '1',
+            text: 'first\nasdfsdf',
             timeCreated: '2018-01-10T21:39:20-05:00',
             timeUpdated: null,
           },
@@ -107,7 +107,7 @@ describe('getEntryPreviews', () => {
       },
     };
 
-    expect(selectors.getEntryPreviews(state)).toEqual([
+    expect(selectors.getEntryPreviews(state)).toEqual(expect.arrayContaining([
       {
         id: '1',
         text: 'first',
@@ -116,7 +116,7 @@ describe('getEntryPreviews', () => {
         id: '2',
         text: 'second',
       },
-    ]);
+    ]));
   });
 });
 
